@@ -3,6 +3,10 @@ package tools;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * 自写的字典树
+ */
 public class Trie {
     private TrieNode root;
 
