@@ -5,10 +5,14 @@ import java.util.Set;
 
 public class question697 {
     public static void main(String[] args) {
-
+        int[] nums = {1,2,2,3,1,4,2};
+        System.out.println(findShortestSubArray(nums));
     }
 
-    public int findShortestSubArray(int[] nums) {
+    public static int findShortestSubArray(int[] nums) {
+        if (nums.length==0){
+            return 0;
+        }
         Map<Integer,Integer> count_map = new HashMap<>();
         for (int i:nums){
             if (count_map.containsKey(i)){
@@ -28,9 +32,24 @@ public class question697 {
         Set<Integer> set = new HashSet<>();
         for (int temp:count_map.keySet()){
             if (count_map.get(temp) == max){
-                set.add(max);
+                set.add(temp);
             }
         }
-        return 0;
+
+        int result = nums.length;
+        for (int i:set){
+            int pointer1 = 0;
+            int pointer2 = nums.length-1;
+            while (nums[pointer1] != i){
+                pointer1++;
+            }
+            while (nums[pointer2] != i){
+                pointer2--;
+            }
+            if (pointer2-pointer1+1<result){
+                result = pointer2-pointer1+1;
+            }
+        }
+        return result;
     }
 }
